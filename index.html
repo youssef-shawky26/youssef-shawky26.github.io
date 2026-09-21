@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Youssef Shawky — AI &amp; Data Science Portfolio</title>
+<meta name="description" content="Youssef Shawky — AI & Data Science student at E-JUST. ML & Data Analysis Intern @NTI, AI Trainee @WE, GCI @ University of Tokyo.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230EA5E9'/%3E%3Ctext x='32' y='43' font-family='Arial' font-size='27' font-weight='800' text-anchor='middle' fill='%230F172A'%3EYS%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ============ Tokens ============ */
+  :root{
+    --navy:#0F172A;
+    --navy-2:#111827;
+    --navy-panel:#1E293B;
+    --off:#F8FAFC;
+    --white:#FFFFFF;
+    --accent:#0EA5E9;        /* cyan on light backgrounds */
+    --accent-bright:#22D3EE; /* same cyan, tuned for dark backgrounds */
+    --accent-deep:#0369A1;   /* darker shade of the same hue for text emphasis on white */
+    --s700:#334155; --s600:#475569; --s500:#64748B; --s400:#94A3B8;
+    --s300:#CBD5E1; --s200:#E2E8F0; --s100:#F1F5F9;
+    --line-dark:rgba(148,163,184,.16);
+    --line-light:var(--s200);
+    --nav-h:68px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 16px)}
+  html,body{overflow-x:clip}
+  body{
+    font-family:'Manrope',ui-sans-serif,system-ui,sans-serif;
+    background:var(--off);
+    color:var(--s600);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--accent);color:var(--navy)}
+  img,svg{display:block}
+  a{text-decoration:none;color:inherit}
+  ul,ol{list-style:none}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+  .wrap{max-width:1120px;margin-inline:auto;padding-inline:24px}
+
+  /* ============ Themes (clear section separation) ============ */
+  .dark{background:var(--navy);color:var(--s400)}
+  .dark h2,.dark h3{color:var(--off)}
+  .light{background:var(--off);color:var(--s600)}
+  .light h2,.light h3{color:var(--navy)}
+
+  section,footer{scroll-margin-top:var(--nav-h)}
+  .sec{padding:104px 0}
+
+  /* ============ Section header: pill label + heading + rule ============ */
+  .sec-head{max-width:720px;margin-bottom:56px}
+  .sec-tag{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:.69rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
+    padding:6px 14px;border-radius:999px;border:1px solid;margin-bottom:20px;
+  }
+  .light .sec-tag{color:var(--accent);border-color:rgba(14,165,233,.35);background:rgba(14,165,233,.06)}
+  .dark  .sec-tag{color:var(--accent-bright);border-color:rgba(34,211,238,.35);background:rgba(34,211,238,.06)}
+  .sec-head h2{
+    font-size:clamp(1.75rem,3.6vw,2.5rem);font-weight:800;
+    letter-spacing:-.02em;line-height:1.15;
+  }
+  .rule{display:block;width:44px;height:3px;border-radius:2px;background:var(--accent);margin:18px 0 0}
+  .dark .rule{background:var(--accent-bright)}
+  .lede{margin-top:18px;font-size:1.05rem;max-width:60ch}
+  .dark .lede{color:var(--s400)}
+
+  /* ============ Reveal on scroll (the only animation) ============ */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease;transition-delay:var(--d,0ms)}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none;transition:none}
+    *{transition:none!important}
+    .bar-fill{width:var(--w)}
+  }
+
+  /* ============ Nav ============ */
+  .nav{
+    position:sticky;top:0;z-index:60;height:var(--nav-h);
+    background:rgba(15,23,42,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid transparent;transition:border-color .25s,box-shadow .25s;
+  }
+  .nav.scrolled{border-bottom-color:var(--line-dark);box-shadow:0 8px 24px rgba(2,6,23,.35)}
+  .nav-inner{height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .brand{display:flex;align-items:center;gap:12px;color:var(--off);font-weight:800;letter-spacing:-.01em}
+  .brand-mark{
+    width:32px;height:32px;border-radius:8px;background:var(--accent-bright);color:var(--navy);
+    display:grid;place-items:center;font-size:.82rem;font-weight:800;flex:none;
+  }
+  .brand small{display:block;font-size:.66rem;font-weight:600;color:var(--s400);letter-spacing:.06em;text-transform:uppercase;line-height:1.3}
+  .brand-name{line-height:1.15;font-size:.98rem}
+  .nav-links{display:flex;align-items:center;gap:6px}
+  .nav-link{
+    position:relative;color:var(--s300);font-size:.9rem;font-weight:600;
+    padding:8px 13px;border-radius:8px;transition:color .2s,background .2s;
+  }
+  .nav-link:hover{color:var(--off);background:rgba(255,255,255,.05)}
+  .nav-link.active{color:var(--off)}
+  .nav-link.active::after{
+    content:"";position:absolute;left:13px;right:13px;bottom:2px;height:2px;
+    border-radius:2px;background:var(--accent-bright);
+  }
+  .nav-toggle{
+    display:none;width:42px;height:42px;border:1px solid var(--line-dark);border-radius:9px;
+    background:transparent;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+  }
+  .nav-toggle span{display:block;width:18px;height:2px;background:var(--s200);border-radius:2px;transition:transform .25s,opacity .25s}
+  .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .nav-menu{display:none}
+  @media (max-width:840px){
+    .nav-links{display:none}
+    .nav-toggle{display:flex}
+    .nav-menu{
+      display:flex;flex-direction:column;padding:10px 24px 18px;
+      position:absolute;top:100%;left:0;right:0;
+      background:var(--navy);border-bottom:1px solid var(--line-dark);
+      transform:translateY(-8px);opacity:0;pointer-events:none;
+      transition:opacity .22s ease,transform .22s ease;
+    }
+    .nav-menu.open{transform:none;opacity:1;pointer-events:auto}
+    .nav-menu .nav-link{padding:12px 4px;border-radius:6px;border-bottom:1px solid rgba(148,163,184,.08)}
+    .nav-menu .nav-link.active::after{left:4px;right:auto;width:24px;bottom:6px}
+  }
+
+  /* ============ Buttons & icon links ============ */
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;
+    padding:13px 24px;border-radius:9px;font-weight:800;font-size:.93rem;
+    border:1px solid transparent;cursor:pointer;
+    transition:transform .2s,box-shadow .2s,border-color .2s,color .2s,background .2s;
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn:active{transform:none}
+  .dark .btn-primary{background:var(--accent-bright);color:var(--navy)}
+  .light .btn-primary{background:var(--accent);color:var(--navy)}
+  .dark .btn-primary:hover{box-shadow:0 10px 26px rgba(34,211,238,.22)}
+  .dark .btn-ghost{border-color:rgba(255,255,255,.24);color:var(--s200)}
+  .dark .btn-ghost:hover{border-color:var(--accent-bright);color:var(--accent-bright)}
+  .icon-link{
+    width:42px;height:42px;border-radius:50%;
+    display:inline-flex;align-items:center;justify-content:center;
+    border:1px solid rgba(255,255,255,.24);color:var(--s300);
+    transition:color .2s,border-color .2s,transform .2s;
+  }
+  .icon-link:hover{color:var(--accent-bright);border-color:var(--accent-bright);transform:translateY(-2px)}
+  .icon-link svg{width:18px;height:18px}
+
+  /* ============ Hero ============ */
+  .hero{position:relative;overflow:clip}
+  .hero::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background-image:
+      linear-gradient(rgba(148,163,184,.06) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(148,163,184,.06) 1px,transparent 1px);
+    background-size:44px 44px;
+    -webkit-mask-image:radial-gradient(85% 75% at 60% 30%,#000 0%,transparent 72%);
+            mask-image:radial-gradient(85% 75% at 60% 30%,#000 0%,transparent 72%);
+  }
+  .hero-grid{
+    position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;
+    min-height:calc(100svh - var(--nav-h));padding-top:72px;padding-bottom:80px;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:.76rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--s400);
+    margin-bottom:22px;
+  }
+  .eyebrow svg{width:14px;height:14px;color:var(--accent-bright)}
+  .hero h1{
+    font-size:clamp(2.6rem,6.4vw,4.4rem);font-weight:800;letter-spacing:-.03em;
+    line-height:1.04;color:var(--off);margin-bottom:20px;
+  }
+  .hero h1 .dot{color:var(--accent-bright)}
+  .creds{font-size:.92rem;font-weight:600;color:var(--s400);margin-bottom:22px;max-width:56ch}
+  .creds .sep{color:var(--accent-bright);font-weight:800;padding:0 3px}
+  .tagline{
+    font-size:clamp(1.08rem,2vw,1.28rem);color:var(--s200);font-weight:500;
+    max-width:52ch;line-height:1.65;margin-bottom:34px;
+  }
+  .tagline strong{color:var(--accent-bright);font-weight:700}
+  .hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+  .hero-cta .divider{width:1px;height:28px;background:var(--line-dark)}
+  .hero-cta .icons{display:flex;gap:10px}
+
+  /* ============ Hero figure — my ML pipeline (terminal) ============ */
+  .hero-fig{justify-self:end;width:100%;max-width:460px}
+  .term{
+    background:var(--navy-2);border:1px solid var(--line-dark);border-radius:16px;
+    overflow:hidden;box-shadow:0 24px 60px rgba(2,6,23,.45);
+  }
+  .term-head{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:14px 18px;border-bottom:1px solid var(--line-dark);
+  }
+  .term-dots{display:flex;gap:7px}
+  .term-dots i{width:10px;height:10px;border-radius:50%;background:#334155}
+  .term-dots i.on{background:#34D399;box-shadow:0 0 8px rgba(52,211,153,.65)}
+  .term-title{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:500;color:var(--s400);letter-spacing:.05em}
+  .term-body{padding:22px 18px 18px}
+  .pl{position:relative;display:flex;flex-direction:column;gap:13px}
+  .pl::before{ /* dashed spine */
+    content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;transform:translateX(-50%);
+    background-image:linear-gradient(to bottom,rgba(148,163,184,.30) 38%,transparent 0);
+    background-size:2px 9px;
+  }
+  .pl-row{
+    position:relative;z-index:1;
+    display:grid;grid-template-columns:1fr 26px 1fr;align-items:center;
+  }
+  .pl-node{
+    grid-column:2;grid-row:1;justify-self:center;
+    width:9px;height:9px;border-radius:50%;background:var(--accent-bright);
+    box-shadow:0 0 10px rgba(34,211,238,.6);position:relative;
+  }
+  .pl-node::before{ /* connector: node → card */
+    content:"";position:absolute;top:50%;transform:translateY(-50%);
+    height:1px;width:14px;left:50%;background:rgba(148,163,184,.28);
+  }
+  .is-left  .pl-node::before{left:auto;right:50%}
+  .is-right .pl-node::before{left:50%}
+  .is-start .pl-node::before,.is-end .pl-node::before{display:none}
+  .pl-card{
+    position:relative;background:#0B1220;border:1px solid rgba(34,211,238,.26);
+    border-radius:10px;padding:10px 14px;
+  }
+  .is-left  .pl-card{grid-column:1}
+  .is-right .pl-card{grid-column:3}
+  .pl-card::after{ /* small status dot inside card, facing the spine */
+    content:"";position:absolute;top:50%;transform:translateY(-50%);
+    width:5px;height:5px;border-radius:50%;background:rgba(34,211,238,.55);
+  }
+  .is-left  .pl-card::after{right:9px}
+  .is-right .pl-card::after{left:9px}
+  .pl-card b{
+    display:block;font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--s200);
+  }
+  .pl-card small{
+    display:block;font-family:'JetBrains Mono',monospace;font-size:.63rem;font-weight:400;
+    color:var(--s500);margin-top:3px;letter-spacing:.03em;
+  }
+  .pl-pill{
+    grid-row:2;grid-column:1/-1;justify-self:center;
+    font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--accent-bright);
+    background:rgba(34,211,238,.06);border:1px solid rgba(34,211,238,.45);
+    border-radius:10px;padding:10px 20px;
+  }
+  .is-end{row-gap:10px}
+  .term-foot{
+    display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 14px;
+    padding:13px 18px;border-top:1px solid var(--line-dark);
+    font-family:'JetBrains Mono',monospace;font-size:.63rem;letter-spacing:.05em;color:var(--s500);
+  }
+  .term-foot b{color:var(--accent-bright);font-weight:600}
+  .term-foot .ok{display:inline-flex;align-items:center;gap:6px;color:#34D399}
+  .term-foot .ok i{width:7px;height:7px;border-radius:50%;background:#34D399;box-shadow:0 0 8px rgba(52,211,153,.65)}
+  .fig-cap{margin-top:12px;font-size:.78rem;color:var(--s500);font-weight:600;letter-spacing:.02em}
+  .fig-cap b{color:var(--s400);font-weight:800}
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr;gap:44px;min-height:0;padding-top:56px}
+    .hero-fig{justify-self:start;max-width:520px}
+  }
+  @media (max-width:420px){
+    .term-body{padding:18px 12px 14px}
+    .pl-card{padding:9px 12px}
+    .pl-card b{font-size:.64rem;letter-spacing:.1em}
+    .pl-card small{font-size:.58rem}
+    .pl-pill{font-size:.62rem;padding:9px 14px;letter-spacing:.14em}
+    .term-foot{font-size:.56rem;padding:11px 14px}
+  }
+
+  /* ============ Niche & USP ============ */
+  .niche-grid{display:grid;grid-template-columns:5fr 7fr;gap:28px;align-items:stretch}
+  .niche-card{
+    background:var(--navy);border-radius:18px;padding:40px 36px;color:var(--s200);
+    display:flex;flex-direction:column;
+  }
+  .block-label{
+    font-size:.7rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;margin-bottom:18px;
+  }
+  .niche-card .block-label{color:var(--accent-bright)}
+  .niche-card p{font-size:1.12rem;line-height:1.7;font-weight:500}
+  .niche-card .honest{color:var(--accent-bright);font-weight:700}
+  .promise .block-label{color:var(--accent)}
+  .promise p{font-size:1.05rem;line-height:1.75;color:var(--s600)}
+  .promise .hl{
+    font-style:normal;font-weight:700;color:var(--navy);
+    box-shadow:inset 0 -.45em rgba(14,165,233,.16);
+  }
+  .flow{
+    margin-top:26px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;
+    font-size:.74rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--s500);
+  }
+  .flow i{font-style:normal;color:var(--accent);font-weight:800}
+  @media (max-width:880px){.niche-grid{grid-template-columns:1fr}}
+
+  /* ============ About / stats ============ */
+  .about-grid{display:grid;grid-template-columns:1fr;max-width:780px}
+  .about-text{font-size:1.06rem;line-height:1.8;color:var(--s300);margin-bottom:44px}
+  .about-text strong{color:var(--off);font-weight:700}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .stat{
+    background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.09);
+    border-radius:14px;padding:26px 24px;
+  }
+  .stat .num{display:block;font-size:2.1rem;font-weight:800;letter-spacing:-.02em;color:var(--accent-bright);line-height:1.1;margin-bottom:8px}
+  .stat .lbl{font-size:.76rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--s400)}
+  @media (max-width:720px){.stats{grid-template-columns:1fr}.stat{padding:22px}}
+
+  /* ============ Experience timeline ============ */
+  .timeline{position:relative;padding-left:38px;max-width:760px}
+  .timeline::before{
+    content:"";position:absolute;left:8px;top:8px;bottom:8px;width:2px;
+    background:var(--line-light);border-radius:2px;
+  }
+  .timeline li{position:relative;padding-bottom:46px}
+  .timeline li:last-child{padding-bottom:0}
+  .timeline li::before{
+    content:"";position:absolute;left:-36px;top:6px;width:12px;height:12px;border-radius:50%;
+    background:var(--off);border:3px solid var(--accent);
+  }
+  .kind{
+    display:inline-block;font-size:.64rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--s500);border:1px solid var(--s300);border-radius:999px;padding:4px 12px;margin-bottom:12px;
+  }
+  .timeline h3{font-size:1.18rem;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+  .org{font-size:.92rem;font-weight:700;color:var(--accent-deep);margin-bottom:10px}
+  .timeline li > p:last-child{font-size:.96rem;max-width:62ch}
+  .yr{
+    display:inline-block;font-size:.72rem;font-weight:800;color:var(--accent-deep);
+    background:rgba(14,165,233,.08);border-radius:6px;padding:2px 9px;margin-left:10px;vertical-align:2px;
+  }
+
+  /* ============ Portfolio & Proof ============ */
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  @media (max-width:860px){.cards{grid-template-columns:1fr}}
+  .card{
+    background:var(--white);border:1px solid var(--line-light);border-radius:16px;
+    padding:26px;display:flex;flex-direction:column;color:var(--s600);
+    transition:transform .25s,box-shadow .25s,border-color .25s;
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(2,6,23,.28);border-color:var(--s300)}
+  .card h3{font-size:1.28rem;font-weight:800;letter-spacing:-.015em;margin-bottom:12px}
+  .honest-tag{
+    align-self:flex-start;font-size:.66rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--s500);border:1px solid var(--s300);border-radius:999px;padding:5px 13px;margin-bottom:18px;
+  }
+  /* 16:9 marked screenshot placeholder */
+  .shot{
+    position:relative;aspect-ratio:16/9;border:1.5px dashed var(--s300);border-radius:10px;
+    background:var(--s100);overflow:hidden;display:grid;place-items:center;margin-bottom:18px;
+  }
+  .shot svg.motif{position:absolute;inset:0;width:100%;height:100%}
+  .shot-inner{position:relative;text-align:center;padding:0 16px}
+  .shot-chip{
+    display:inline-block;font-size:.62rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;
+    color:var(--s500);background:var(--white);border:1px solid var(--s300);border-radius:999px;
+    padding:6px 14px;margin-bottom:10px;box-shadow:0 2px 8px rgba(2,6,23,.05);
+  }
+  .shot-sub{font-size:.82rem;font-weight:600;color:var(--s600)}
+  .card .summary{font-size:.94rem;line-height:1.7;margin-bottom:22px}
+  .card .summary strong{color:var(--accent-deep);font-weight:800}
+  .view-link{
+    margin-top:auto;align-self:flex-start;
+    display:inline-flex;align-items:center;gap:9px;
+    font-size:.88rem;font-weight:800;color:var(--accent);
+    border:1px solid rgba(14,165,233,.5);border-radius:9px;padding:11px 18px;
+    transition:background .2s,color .2s,border-color .2s;
+  }
+  .view-link svg{width:16px;height:16px;transition:transform .2s}
+  .view-link:hover{background:var(--accent);color:var(--navy);border-color:var(--accent)}
+  .view-link:hover svg{transform:translateX(3px)}
+
+  /* ============ Wide ML cards: rich description + benchmark chart ============ */
+  .card-wide{grid-column:1/-1}
+  .card-wide h3{font-size:1.5rem}
+  .card-top{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .card-tags{
+    font-family:'JetBrains Mono',monospace;font-size:.64rem;font-weight:500;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--s400);
+  }
+  .proj-body{display:grid;grid-template-columns:1.12fr .92fr;gap:clamp(24px,4vw,44px)}
+  .card .lead{font-size:.96rem;line-height:1.7}
+  .card .lead strong{color:var(--navy);font-weight:800}
+  .card .built{font-size:.94rem;line-height:1.7;margin-top:12px}
+  .card .built strong{color:var(--navy);font-weight:800}
+  .feats{margin-top:18px}
+  .feats li{position:relative;padding-left:20px;font-size:.92rem;line-height:1.65;margin-bottom:10px}
+  .feats li:last-child{margin-bottom:0}
+  .feats li::before{
+    content:"";position:absolute;left:0;top:.55em;width:7px;height:7px;border-radius:2px;
+    background:var(--accent);
+  }
+  .feats strong{color:var(--navy);font-weight:800}
+  /* benchmark chart (hand-built, no library) */
+  .chart{background:var(--s100);border:1px solid var(--line-light);border-radius:12px;padding:20px 20px 16px;align-self:start}
+  .chart-head{padding-bottom:12px;margin-bottom:14px;border-bottom:1px solid var(--line-light);display:flex;flex-direction:column;gap:3px}
+  .chart-title{font-size:.88rem;font-weight:800;color:var(--navy);letter-spacing:-.01em}
+  .chart-sub{font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var(--s500)}
+  .bar-row{display:grid;grid-template-columns:104px 1fr 48px;gap:10px;align-items:center;margin-bottom:10px}
+  .bar-row:last-child{margin-bottom:0}
+  .bar-label{font-family:'JetBrains Mono',monospace;font-size:.67rem;color:var(--s600);white-space:nowrap}
+  .bar-track{height:10px;background:#E8EEF5;border-radius:6px;overflow:hidden}
+  .bar-fill{display:block;height:100%;width:0;border-radius:6px;background:#C3CEDB;transition:width .9s cubic-bezier(.22,1,.36,1) .15s}
+  .bar-fill.win{background:var(--accent)}
+  .bar-val{font-family:'JetBrains Mono',monospace;font-size:.67rem;color:var(--s500);text-align:right}
+  .bar-val.win{color:var(--accent-deep);font-weight:600}
+  .chart-legend{margin-top:14px;padding-top:12px;border-top:1px solid var(--line-light);display:flex;gap:14px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:.64rem;color:var(--s500)}
+  .lg{display:inline-flex;align-items:center;gap:6px}
+  .lg i{width:8px;height:8px;border-radius:50%}
+  .lg-good i{background:#10B981}.lg-fair i{background:#F59E0B}.lg-bad i{background:#EF4444}
+  /* bars fill when the card reveals */
+  .card.in .bar-fill{width:var(--w)}
+  @media (max-width:860px){.proj-body{grid-template-columns:1fr}}
+
+  /* ============ Skills (CV-style rows) ============ */
+  .skill-list{max-width:920px}
+  .skill-row{
+    display:grid;grid-template-columns:250px 1fr;gap:22px;align-items:start;
+    padding:24px 0;border-top:1px solid var(--line-light);
+  }
+  .skill-row:first-child{border-top:0;padding-top:0}
+  .skill-row:last-child{border-bottom:1px solid var(--line-light)}
+  .skill-row h3{
+    font-size:.72rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--s500);padding-top:8px;
+  }
+  .pills{display:flex;flex-wrap:wrap;gap:9px}
+  .pills li{
+    font-size:.86rem;font-weight:600;color:var(--s700);
+    background:var(--white);border:1px solid var(--line-light);border-radius:999px;
+    padding:7px 15px;transition:border-color .2s,color .2s;
+  }
+  .pills li:hover{border-color:var(--accent);color:var(--accent-deep)}
+  .pills .pill-meta{color:var(--s400);font-weight:600}
+  @media (max-width:720px){.skill-row{grid-template-columns:1fr;gap:12px}.skill-row h3{padding-top:0}}
+
+  /* ============ Contact / footer ============ */
+  .contact-inner{max-width:640px;margin-inline:auto;text-align:center}
+  .contact-inner .sec-head{margin-inline:auto;margin-bottom:36px}
+  .contact-inner .rule{margin-inline:auto}
+  .contact-line{font-size:1.05rem;color:var(--s300);margin-bottom:36px}
+  .channels{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
+  .channel{
+    display:inline-flex;align-items:center;gap:12px;
+    border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:13px 20px;
+    transition:border-color .2s,transform .2s;color:var(--s200);
+  }
+  .channel:hover{border-color:var(--accent-bright);transform:translateY(-2px)}
+  .channel svg{width:19px;height:19px;color:var(--s400);transition:color .2s;flex:none}
+  .channel:hover svg{color:var(--accent-bright)}
+  .channel strong{display:block;font-size:.9rem;font-weight:800;color:var(--off);line-height:1.25}
+  .channel small{display:block;font-size:.74rem;font-weight:600;color:var(--s500);line-height:1.3}
+  .foot-bottom{
+    margin-top:72px;padding-top:26px;border-top:1px solid var(--line-dark);
+    display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
+    font-size:.78rem;font-weight:600;color:var(--s500);
+  }
+  .foot-bottom b{color:var(--s400);font-weight:800}
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<nav class="nav" id="navbar" aria-label="Main navigation">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#home" aria-label="Youssef Shawky — home">
+      <span class="brand-mark">YS</span>
+      <span class="brand-name">Youssef Shawky<small>AI &amp; Data Science</small></span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a class="nav-link" href="#home">Home</a>
+      <a class="nav-link" href="#experience">Experience</a>
+      <a class="nav-link" href="#portfolio">Portfolio</a>
+      <a class="nav-link" href="#skills">Skills</a>
+      <a class="nav-link" href="#contact">Contact</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-menu" id="navMenu">
+    <a class="nav-link" href="#home">Home</a>
+    <a class="nav-link" href="#experience">Experience</a>
+    <a class="nav-link" href="#portfolio">Portfolio</a>
+    <a class="nav-link" href="#skills">Skills</a>
+    <a class="nav-link" href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- ================= 1 · HERO (dark) ================= -->
+<header id="home" class="dark hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        Alexandria, Egypt
+      </p>
+      <h1 class="reveal" style="--d:.06s">Youssef Shawky<span class="dot">.</span></h1>
+      <p class="creds reveal" style="--d:.12s">
+        ML &amp; Data Analysis Intern <span class="sep">@</span> NTI
+        <span class="sep">·</span> AI Trainee <span class="sep">@</span> WE
+        <span class="sep">·</span> GCI Program <span class="sep">@</span> University of Tokyo
+        <span class="sep">·</span> BSc CS &amp; IT, AI &amp; Data Science <span class="sep">@</span> E-JUST
+        <span class="sep">·</span> Class of 2029
+      </p>
+      <p class="tagline reveal" style="--d:.18s">
+        I turn messy, unstructured data into <strong>clear insights</strong> and working machine
+        learning models — from raw CSVs to <strong>deployed predictions</strong>.
+      </p>
+      <div class="hero-cta reveal" style="--d:.24s">
+        <a class="btn btn-primary" href="#portfolio">View Portfolio</a>
+        <a class="btn btn-ghost" href="#contact">Contact</a>
+        <span class="divider" aria-hidden="true"></span>
+        <span class="icons">
+          <a class="icon-link" href="https://github.com/youssef-shawky26" target="_blank" rel="noopener" aria-label="GitHub profile">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+          <a class="icon-link" href="https://www.linkedin.com/in/youssef-shawky26/" target="_blank" rel="noopener" aria-label="LinkedIn profile">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
+          </a>
+        </span>
+      </div>
+    </div>
+
+    <!-- Signature figure: my ML pipeline, terminal style -->
+    <figure class="hero-fig reveal" style="--d:.3s">
+      <div class="term">
+        <div class="term-head">
+          <span class="term-dots" aria-hidden="true"><i></i><i></i><i class="on"></i></span>
+          <span class="term-title">ml.pipeline — youssef.shawky</span>
+        </div>
+
+        <div class="term-body">
+          <div class="pl">
+            <div class="pl-row is-start">
+              <span class="pl-node" aria-hidden="true"></span>
+            </div>
+            <div class="pl-row is-left">
+              <div class="pl-card"><b>Raw Data</b><small>csv · 100k rows</small></div>
+              <span class="pl-node" aria-hidden="true"></span>
+            </div>
+            <div class="pl-row is-right">
+              <span class="pl-node" aria-hidden="true"></span>
+              <div class="pl-card"><b>EDA</b><small>pandas · seaborn</small></div>
+            </div>
+            <div class="pl-row is-left">
+              <div class="pl-card"><b>Features</b><small>engineering · tuning</small></div>
+              <span class="pl-node" aria-hidden="true"></span>
+            </div>
+            <div class="pl-row is-right">
+              <span class="pl-node" aria-hidden="true"></span>
+              <div class="pl-card"><b>Train</b><small>5 models benchmarked</small></div>
+            </div>
+            <div class="pl-row is-left">
+              <div class="pl-card"><b>Deploy</b><small>flask · streamlit</small></div>
+              <span class="pl-node" aria-hidden="true"></span>
+            </div>
+            <div class="pl-row is-end">
+              <span class="pl-node" aria-hidden="true"></span>
+              <span class="pl-pill">Prediction · Insight</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="term-foot">
+          <span>ROWS ANALYZED <b>100K+</b></span>
+          <span class="ok"><i aria-hidden="true"></i>EVALUATED</span>
+          <span>BEST ROC-AUC <b>0.978</b></span>
+        </div>
+      </div>
+      <figcaption class="fig-cap"><b>fig. 01</b> — my ML pipeline: raw CSVs in, deployed predictions out.</figcaption>
+    </figure>
+  </div>
+</header>
+
+<main>
+
+  <!-- ================= 2 · NICHE & USP (light) ================= -->
+  <section id="niche" class="light sec">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-tag">01 · Niche &amp; USP</span>
+        <h2>A focused niche. A clear promise.</h2>
+        <span class="rule" aria-hidden="true"></span>
+      </div>
+      <div class="niche-grid">
+        <div class="niche-card reveal">
+          <p class="block-label">My Niche</p>
+          <p>
+            I help small businesses, startups, and early-stage teams turn messy, unstructured
+            datasets into clean analysis, clear insights, and simple, reliable machine learning
+            predictions — <span class="honest">when the data supports it.</span>
+          </p>
+        </div>
+        <div class="promise reveal" style="--d:.1s">
+          <p class="block-label">My Promise — USP</p>
+          <p>
+            I help small businesses and startups turn unstructured data into business opportunities
+            and data-driven decisions — analyzing data with Python to uncover
+            <em class="hl">hidden patterns and trends</em>, extracting insights that support business
+            growth, and applying suitable machine learning models to
+            <em class="hl">predict future outcomes</em> — all delivered with
+            <em class="hl">clear visualizations, reports, and organized, reusable code</em>.
+          </p>
+          <p class="flow" aria-label="How I work, in four steps">
+            <span>Analyze</span><i>→</i><span>Uncover</span><i>→</i><span>Predict</span><i>→</i><span>Deliver</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 3 · ABOUT (dark) ================= -->
+  <section id="about" class="dark sec">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-tag">02 · About</span>
+        <h2>About me</h2>
+        <span class="rule" aria-hidden="true"></span>
+      </div>
+      <div class="about-grid">
+        <p class="about-text reveal">
+          I'm passionate about extracting hidden patterns from data and building models that make a
+          real impact. Currently studying <strong>AI &amp; Data Science at E-JUST</strong>, I work
+          across the full ML lifecycle — from data cleaning and exploratory analysis to training,
+          evaluating, and deploying full-stack predictive systems. I care about the unglamorous
+          parts too — clean data, honest benchmarks, reusable code — because that's what separates
+          a demo from something dependable. Based in Alexandria, Egypt, and open to collaborating
+          anywhere.
+        </p>
+        <div class="stats">
+          <div class="stat reveal"><span class="num">2</span><span class="lbl">End-to-End ML Projects</span></div>
+          <div class="stat reveal" style="--d:.08s"><span class="num">5+</span><span class="lbl">Models Benchmarked per Project</span></div>
+          <div class="stat reveal" style="--d:.16s"><span class="num">100K+</span><span class="lbl">Rows Analyzed</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 4 · EXPERIENCE (light) ================= -->
+  <section id="experience" class="light sec">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-tag">03 · Experience</span>
+        <h2>Experience &amp; Education</h2>
+        <span class="rule" aria-hidden="true"></span>
+        <p class="lede">Internships, training programs, and the degree in progress — in order.</p>
+      </div>
+      <ol class="timeline">
+        <li class="reveal">
+          <span class="kind">Internship</span>
+          <h3>ML &amp; Data Analysis Intern</h3>
+          <p class="org">National Telecommunication Institute (NTI)</p>
+          <p>Designed, trained, and deployed end-to-end ML pipelines; built multi-model platforms
+          with Flask backends and interactive dashboards.</p>
+        </li>
+        <li class="reveal" style="--d:.06s">
+          <span class="kind">Traineeship</span>
+          <h3>AI Trainee</h3>
+          <p class="org">Telecom Egypt (WE)</p>
+          <p>In-depth exploratory data analysis to extract high-value insights; handled complex
+          feature transformations; built an end-to-end pricing regression project scoring
+          95%+ across test benchmarks.</p>
+        </li>
+        <li class="reveal" style="--d:.12s">
+          <span class="kind">Global Program</span>
+          <h3>GCI Program</h3>
+          <p class="org">The University of Tokyo — Matsuo-Iwasawa Lab</p>
+          <p>International program in data science and AI fundamentals; explored ML concepts and
+          analysis techniques in a research-oriented, collaborative global setting.</p>
+        </li>
+        <li class="reveal" style="--d:.18s">
+          <span class="kind">Degree</span>
+          <h3>BSc Computer Science &amp; IT — AI &amp; Data Science</h3>
+          <p class="org">Egypt-Japan University of Science and Technology (E-JUST) <span class="yr">Class of 2029</span></p>
+          <p>Undergraduate degree in progress — Alexandria, Egypt.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================= 5 · PORTFOLIO & PROOF (dark) ================= -->
+  <section id="portfolio" class="dark sec">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-tag">04 · Portfolio &amp; Proof</span>
+        <h2>Portfolio &amp; Proof</h2>
+        <span class="rule" aria-hidden="true"></span>
+        <p class="lede">Four end-to-end builds, honestly labeled — two ML systems and two software
+        engineering projects. Metrics included, hype excluded.</p>
+      </div>
+      <div class="cards">
+
+        <!-- Card 1 · Smart Bank AI Platform (ML — rich description + benchmark) -->
+        <article class="card card-wide reveal">
+          <div class="card-top">
+            <h3>Smart Bank AI Platform</h3>
+            <span class="card-tags">Flask · XGBoost · SHAP · KMeans</span>
+          </div>
+          <span class="honest-tag">Practice / Training Project (NTI Internship)</span>
+          <div class="proj-body">
+            <div>
+              <p class="lead">
+                Banks answer the same four questions every day — <strong>who to lend to, who to
+                trust, where a currency is heading, who a client really is</strong> — usually
+                manually, or across disconnected tools.
+              </p>
+              <p class="built">
+                I built a full-stack platform where every decision is backed by a trained model, not
+                static rules: a Flask API with a model registry that loads all four pipelines at
+                startup, role-based auth, and one endpoint per model — behind separate client and
+                manager portals.
+              </p>
+              <ul class="feats">
+                <li><strong>Loan approval</strong> — XGBoost, best of 5 benchmarked models · 93.1% accuracy, 0.978 ROC-AUC, with an instant SHAP-explained decision on the client's screen.</li>
+                <li><strong>Fraud detection</strong> — evaluated on PR-AUC (0.96) since fraud is &lt;0.6% of transactions; a flag never moves money silently — it lands in the manager's review queue with probability and reasoning attached.</li>
+                <li><strong>Currency forecasting</strong> — regression on lag &amp; moving-average features for next-day forecasts.</li>
+                <li><strong>Customer segmentation</strong> — KMeans clustering grouping clients into actionable segments.</li>
+              </ul>
+            </div>
+            <figure class="chart" role="img" aria-label="Benchmark of five loan-approval models by ROC-AUC: XGBoost leads at 0.978, ahead of Random Forest 0.962, Gradient Boosting 0.951, Decision Tree 0.918 and Logistic Regression 0.903.">
+              <figcaption class="chart-head">
+                <span class="chart-title">Loan-approval benchmark</span>
+                <span class="chart-sub">ROC-AUC · higher is better</span>
+              </figcaption>
+              <div class="bars">
+                <div class="bar-row"><span class="bar-label">XGBoost</span><span class="bar-track"><span class="bar-fill win" style="--w:85.3%"></span></span><span class="bar-val win">0.978</span></div>
+                <div class="bar-row"><span class="bar-label">Random Forest</span><span class="bar-track"><span class="bar-fill" style="--w:74.7%"></span></span><span class="bar-val">0.962</span></div>
+                <div class="bar-row"><span class="bar-label">Grad. Boosting</span><span class="bar-track"><span class="bar-fill" style="--w:67.3%"></span></span><span class="bar-val">0.951</span></div>
+                <div class="bar-row"><span class="bar-label">Decision Tree</span><span class="bar-track"><span class="bar-fill" style="--w:45.3%"></span></span><span class="bar-val">0.918</span></div>
+                <div class="bar-row"><span class="bar-label">Logistic Reg.</span><span class="bar-track"><span class="bar-fill" style="--w:35.3%"></span></span><span class="bar-val">0.903</span></div>
+              </div>
+            </figure>
+          </div>
+          <a class="view-link" href="https://lnkd.in/eh-ZY6VU" target="_blank" rel="noopener">
+            View Full Project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </article>
+
+        <!-- Card 2 · AutoWorth AI (ML — rich description + benchmark) -->
+        <article class="card card-wide reveal" style="--d:.1s">
+          <div class="card-top">
+            <h3>AutoWorth AI — Used Car Price &amp; Deal Advisor</h3>
+            <span class="card-tags">Streamlit · XGBoost · 100K rows · 5 models</span>
+          </div>
+          <span class="honest-tag">Practice / Training Project (WE Traineeship)</span>
+          <div class="proj-body">
+            <div>
+              <p class="lead">
+                Buying a used car comes down to one question: <strong>is this a fair price, or am I
+                overpaying?</strong>
+              </p>
+              <p class="built">
+                AutoWorth AI predicts a car's fair market value and tells buyers whether the asking
+                price is a good deal. Trained on a <strong>100,000-row UK used-car dataset</strong>,
+                the pipeline was built from scratch — acquisition, cleaning, EDA, feature
+                engineering and tuning — benchmarking five models on R², MAE and RMSE. A Smart Deal
+                Advisor then compares predicted value to the asking price, from Great Deal to
+                Overpriced. Deployed as an interactive Streamlit app.
+              </p>
+              <ul class="feats">
+                <li><strong>Full pipeline from scratch</strong> — cleaning → EDA → feature engineering → hyperparameter tuning, no shortcuts.</li>
+                <li><strong>5 models benchmarked</strong> — Linear Regression through XGBoost, selected on metrics, not gut feeling.</li>
+                <li><strong>Smart Deal Advisor</strong> — predicted market value vs. asking price, classified instantly for the buyer.</li>
+              </ul>
+            </div>
+            <figure class="chart" role="img" aria-label="Price prediction error by model, RMSE in pounds, lower is better: XGBoost best at 1,187, ahead of Gradient Boosting 1,354, Random Forest 1,522, Decision Tree 1,908 and Linear Regression 2,241.">
+              <figcaption class="chart-head">
+                <span class="chart-title">Price-prediction error</span>
+                <span class="chart-sub">RMSE, £ · lower is better</span>
+              </figcaption>
+              <div class="bars">
+                <div class="bar-row"><span class="bar-label">XGBoost</span><span class="bar-track"><span class="bar-fill win" style="--w:84%"></span></span><span class="bar-val win">1,187</span></div>
+                <div class="bar-row"><span class="bar-label">Grad. Boosting</span><span class="bar-track"><span class="bar-fill" style="--w:74%"></span></span><span class="bar-val">1,354</span></div>
+                <div class="bar-row"><span class="bar-label">Random Forest</span><span class="bar-track"><span class="bar-fill" style="--w:65%"></span></span><span class="bar-val">1,522</span></div>
+                <div class="bar-row"><span class="bar-label">Decision Tree</span><span class="bar-track"><span class="bar-fill" style="--w:44%"></span></span><span class="bar-val">1,908</span></div>
+                <div class="bar-row"><span class="bar-label">Linear Reg.</span><span class="bar-track"><span class="bar-fill" style="--w:16%"></span></span><span class="bar-val">2,241</span></div>
+              </div>
+              <div class="chart-legend">
+                <span class="lg lg-good"><i></i>Great Deal</span>
+                <span class="lg lg-fair"><i></i>Fair Value</span>
+                <span class="lg lg-bad"><i></i>Overpriced</span>
+              </div>
+            </figure>
+          </div>
+          <a class="view-link" href="https://lnkd.in/eBpWVDSX" target="_blank" rel="noopener">
+            View Full Project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </article>
+
+        <!-- Card 3 — from CV: Doctor Appointment System -->
+        <article class="card reveal">
+          <h3>Doctor Appointment System</h3>
+          <span class="honest-tag">University Coursework Project (Java · Sockets · OOP)</span>
+          <div class="shot" role="img" aria-label="Screenshot placeholder for Doctor Appointment System booking flow">
+            <svg class="motif" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <!-- patient client window -->
+              <g stroke="#CBD5E1" stroke-width="1.5" fill="#FFFFFF">
+                <rect x="34" y="58" width="92" height="110" rx="8"/>
+              </g>
+              <g stroke="#E2E8F0" stroke-width="1.5" stroke-linecap="round">
+                <path d="M48 82 h56 M48 98 h56 M48 114 h38"/>
+              </g>
+              <circle cx="64" cy="146" r="9" fill="none" stroke="#CBD5E1" stroke-width="1.5"/>
+              <path d="M64 151 v9 M57 162 h14" stroke="#CBD5E1" stroke-width="1.5" stroke-linecap="round"/>
+              <!-- booking request → server -->
+              <path d="M126 112 L168 112" stroke="#0EA5E9" stroke-width="2" stroke-dasharray="4 5"/>
+              <path d="M162 106 l8 6 -8 6" fill="none" stroke="#0EA5E9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- server stack -->
+              <g stroke="#CBD5E1" stroke-width="1.5" fill="#FFFFFF">
+                <rect x="172" y="52" width="86" height="28" rx="6"/>
+                <rect x="172" y="92" width="86" height="28" rx="6"/>
+                <rect x="172" y="132" width="86" height="28" rx="6"/>
+              </g>
+              <g fill="#CBD5E1">
+                <circle cx="186" cy="66" r="3.5"/><circle cx="186" cy="106" r="3.5"/><circle cx="186" cy="146" r="3.5"/>
+              </g>
+              <path d="M196 66 h48 M196 106 h48 M196 146 h48" stroke="#E2E8F0" stroke-width="1.5" stroke-linecap="round"/>
+              <!-- server → confirmed slot on schedule -->
+              <path d="M258 106 L282 106" stroke="#0EA5E9" stroke-width="2" stroke-dasharray="4 5"/>
+              <path d="M276 100 l8 6 -8 6" fill="none" stroke="#0EA5E9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <g stroke="#CBD5E1" stroke-width="1.5" fill="#FFFFFF">
+                <rect x="288" y="52" width="80" height="112" rx="8"/>
+              </g>
+              <path d="M288 74 h80" stroke="#E2E8F0" stroke-width="1.5"/>
+              <g fill="#E2E8F0">
+                <rect x="300" y="86" width="25" height="16" rx="3"/><rect x="331" y="86" width="25" height="16" rx="3"/>
+                <rect x="300" y="110" width="25" height="16" rx="3"/><rect x="331" y="110" width="25" height="16" rx="3"/>
+                <rect x="300" y="134" width="25" height="16" rx="3"/><rect x="331" y="134" width="25" height="16" rx="3"/>
+              </g>
+              <rect x="331" y="110" width="25" height="16" rx="3" fill="rgba(14,165,233,0.15)" stroke="#0EA5E9" stroke-width="1.5"/>
+            </svg>
+            <div class="shot-inner">
+              <span class="shot-chip">Screenshot Placeholder</span>
+              <p class="shot-sub">Booking flow — Doctor Appointment System</p>
+            </div>
+          </div>
+          <p class="summary">
+            Engineering fundamentals before the ML: a client-server appointment manager built in
+            Java — doctors register availability, patients search and book slots — using
+            <strong>socket programming</strong>, <strong>multithreaded clients</strong> for
+            simultaneous message sending/receiving, and file-based persistence for doctors and
+            appointments.
+          </p>
+          <a class="view-link" href="https://github.com/youssef-shawky26" target="_blank" rel="noopener">
+            View on GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </article>
+
+        <!-- Card 4 — from CV: Restaurant Queue Management & Simulation -->
+        <article class="card reveal" style="--d:.1s">
+          <h3>Restaurant Queue Management &amp; Simulation</h3>
+          <span class="honest-tag">University Coursework Project (C++ · Data Structures)</span>
+          <div class="shot" role="img" aria-label="Screenshot placeholder for restaurant queue simulation">
+            <svg class="motif" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <!-- waiting queue -->
+              <path d="M40 148 H198" stroke="#E2E8F0" stroke-width="1.5" stroke-linecap="round"/>
+              <g fill="#CBD5E1">
+                <circle cx="60" cy="124" r="8"/><circle cx="88" cy="124" r="8"/>
+                <circle cx="116" cy="124" r="8"/><circle cx="144" cy="124" r="8"/>
+              </g>
+              <!-- reserved customer, priority handling -->
+              <circle cx="176" cy="124" r="9" fill="#FFFFFF" stroke="#0EA5E9" stroke-width="2"/>
+              <!-- priority route to table -->
+              <path d="M187 114 C214 90 230 86 248 88" stroke="#0EA5E9" stroke-width="1.8" fill="none" stroke-dasharray="4 5"/>
+              <path d="M242 82 l8 6 -8 6" fill="none" stroke="#0EA5E9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- tables -->
+              <g stroke="#CBD5E1" stroke-width="1.5" fill="#FFFFFF">
+                <rect x="252" y="64" width="64" height="40" rx="20"/>
+                <rect x="252" y="128" width="64" height="40" rx="20"/>
+              </g>
+              <g fill="#CBD5E1">
+                <circle cx="242" cy="84" r="4"/><circle cx="326" cy="84" r="4"/>
+              </g>
+              <circle cx="284" cy="84" r="6" fill="rgba(14,165,233,0.15)" stroke="#0EA5E9" stroke-width="1.5"/>
+              <!-- wait-time stats -->
+              <g fill="#CBD5E1">
+                <rect x="338" y="154" width="11" height="24" rx="2"/>
+                <rect x="355" y="140" width="11" height="38" rx="2"/>
+              </g>
+              <rect x="372" y="122" width="11" height="56" rx="2" fill="#0EA5E9"/>
+              <path d="M334 180 H388" stroke="#E2E8F0" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <div class="shot-inner">
+              <span class="shot-chip">Screenshot Placeholder</span>
+              <p class="shot-sub">Live queue view — Restaurant Simulation (Raylib)</p>
+            </div>
+          </div>
+          <p class="summary">
+            A real-time restaurant simulation in C++ that routes dine-in, takeaway, and reserved
+            customers through <strong>queue-based data structures</strong> — priority seating for
+            reservations, table allocation optimized by party size, an interactive
+            <strong>Raylib GUI</strong> showing tables and queues live, plus reporting on waiting
+            times, service efficiency, and table usage.
+          </p>
+          <a class="view-link" href="https://github.com/youssef-shawky26" target="_blank" rel="noopener">
+            View on GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 6 · SKILLS (light) ================= -->
+  <section id="skills" class="light sec">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-tag">05 · Skills</span>
+        <h2>Skills &amp; Toolkit</h2>
+        <span class="rule" aria-hidden="true"></span>
+        <p class="lede">Organized the way I actually use them — by category, like a CV.</p>
+      </div>
+      <div class="skill-list">
+
+        <div class="skill-row reveal">
+          <h3>Programming Languages</h3>
+          <ul class="pills"><li>Python</li><li>Java</li><li>C/C++</li></ul>
+        </div>
+
+        <div class="skill-row reveal">
+          <h3>Data Analysis &amp; Visualization</h3>
+          <ul class="pills">
+            <li>Pandas</li><li>NumPy</li><li>Matplotlib</li><li>Seaborn</li>
+            <li>Exploratory Data Analysis</li><li>Statistical Inference</li><li>Data Cleaning &amp; Storytelling</li>
+          </ul>
+        </div>
+
+        <div class="skill-row reveal">
+          <h3>Machine Learning</h3>
+          <ul class="pills">
+            <li>Supervised Learning (regression &amp; classification, linear &amp; tree-based models)</li>
+            <li>Unsupervised Learning (clustering)</li>
+            <li>Feature Engineering</li>
+            <li>Model Evaluation &amp; Hyperparameter Tuning</li>
+          </ul>
+        </div>
+
+        <div class="skill-row reveal">
+          <h3>Deployment &amp; Engineering</h3>
+          <ul class="pills">
+            <li>Flask (REST APIs)</li><li>Streamlit</li><li>Model Serialization (Joblib / Pickle)</li>
+            <li>Git / GitHub</li><li>Object-Oriented Programming</li>
+          </ul>
+        </div>
+
+        <div class="skill-row reveal">
+          <h3>Developer Tools</h3>
+          <ul class="pills"><li>VS Code</li><li>Visual Studio</li><li>IntelliJ IDEA</li><li>Jupyter Notebook</li><li>GitHub</li></ul>
+        </div>
+
+        <div class="skill-row reveal">
+          <h3>Certifications</h3>
+          <ul class="pills">
+            <li>Python 3 Programming Specialization <span class="pill-meta">· Coursera / University of Michigan</span></li>
+          </ul>
+        </div>
+
+        <div class="skill-row reveal">
+          <h3>Languages Spoken</h3>
+          <ul class="pills">
+            <li>Arabic <span class="pill-meta">· Native</span></li>
+            <li>English</li>
+            <li>Japanese</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= 7 · CONTACT / FOOTER (dark) ================= -->
+<footer id="contact" class="dark sec">
+  <div class="wrap contact-inner">
+    <div class="sec-head reveal">
+      <span class="sec-tag">06 · Contact</span>
+      <h2>Let's turn your data into decisions.</h2>
+      <span class="rule" aria-hidden="true"></span>
+    </div>
+    <p class="contact-line reveal">Open to freelance data analysis &amp; ML projects, and internship/collaboration opportunities.</p>
+
+    <div class="channels reveal" style="--d:.08s">
+      <a class="channel" href="https://github.com/youssef-shawky26" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        <span><strong>GitHub</strong><small>github.com/youssef-shawky26</small></span>
+      </a>
+      <a class="channel" href="https://www.linkedin.com/in/youssef-shawky26/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
+        <span><strong>LinkedIn</strong><small>in/youssef-shawky26</small></span>
+      </a>
+      <a class="channel" href="mailto:yshawky797@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+        <span><strong>Email</strong><small>yshawky797@gmail.com</small></span>
+      </a>
+      <a class="channel" href="tel:+201111931714">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span><strong>Phone / WhatsApp</strong><small>+20 111 193 1714</small></span>
+      </a>
+    </div>
+
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> <b>Youssef Shawky</b> — Alexandria, Egypt</span>
+      <span>Designed &amp; built from scratch — HTML · CSS · JavaScript</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ---- Sticky nav shadow ----
+  const nav = document.getElementById('navbar');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // ---- Mobile menu ----
+  const toggle = document.getElementById('navToggle');
+  const menu = document.getElementById('navMenu');
+  const closeMenu = () => { menu.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); };
+  toggle.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+  // ---- Subtle fade-in on scroll (the only animation) ----
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ---- Scrollspy for the nav ----
+  const linkFor = id => document.querySelector('.nav-link[href="#' + id + '"]');
+  const spy = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+      const link = linkFor(e.target.id);
+      if (link) link.classList.add('active');
+    });
+  }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+  ['home', 'niche', 'about', 'experience', 'portfolio', 'skills', 'contact']
+    .forEach(id => { const s = document.getElementById(id); if (s) spy.observe(s); });
+
+  // ---- Copyright year ----
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
